@@ -28,15 +28,15 @@ for ($i = 0; $i < ob_get_level(); $i++)
 ob_implicit_flush(1);
 
 // 画像URL
-$spFileObject = new SplFileObject($motionJpegUrl, 'r');
+$splFileObject = new SplFileObject($motionJpegUrl, 'r');
 
 // 接続が談された後実行が終了するかを確かめるためにログを出力する。
 // ディレクトリの権限に気をつけること。
 $logSplFileObject = new SplFileObject('log/log.txt', 'w');
 
 // ずっと繰り返す。
-while($line = $spFileObject->fgets()) {
+while($line = $splFileObject->fgets()) {
     echo $line;
-    // ログ出力
-    $logSplFileObject->fwrite(date('H:i:s').PHP_EOL);
+    // ログ出力 確認したい時にコメントアウトをはずす。
+    //$logSplFileObject->fwrite(date('H:i:s').PHP_EOL);
 }
