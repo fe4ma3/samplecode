@@ -28,7 +28,8 @@ for ($i = 0; $i < ob_get_level(); $i++)
 ob_implicit_flush(1);
 
 // 画像URL
-$spFileObject = new SplFileObject('$motionJpegUrl', 'r');
+$spFileObject = new SplFileObject($motionJpegUrl, 'r');
+
 // 接続が談された後実行が終了するかを確かめるためにログを出力する。
 // ディレクトリの権限に気をつけること。
 $logSplFileObject = new SplFileObject('log/log.txt', 'w');
