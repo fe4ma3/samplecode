@@ -21,22 +21,25 @@ set_time_limit(0);
 
 // 各出力ブロックの後で自動的に出力レイヤをフラッシュする
 @ini_set('implicit_flush', 1);
-// 全てのバッファを出力する。
+// 全てのバッファをフラッシュしてオフにする。
 for ($i = 0; $i < ob_get_level(); $i++)
     ob_end_flush();
 // 自動フラッシュをonにする。
 ob_implicit_flush(1);
 
-// 画像URL
-$splFileObject = new SplFileObject($motionJpegUrl, 'r');
+readfile($motionJpegUrl);
 
-// 接続が談された後実行が終了するかを確かめるためにログを出力する。
-// ディレクトリの権限に気をつけること。
-$logSplFileObject = new SplFileObject('log/log.txt', 'w');
+// 画像URL
+//$fp = fopen($motionJpegUrl, 'rb');
 
 // ずっと繰り返す。
-while($line = $splFileObject->fgets()) {
-    echo $line;
-    // ログ出力 確認したい時にコメントアウトをはずす。
-    //$logSplFileObject->fwrite(date('H:i:s').PHP_EOL);
-}
+// while(($byte = fread($fp, 1024)) !== false) {
+//    echo $byte;
+    // 接続が談された後実行が終了するかを確かめるためにログを出力する。
+    // ディレクトリの権限に気をつけること。
+    //$logSplFileObject = new SplFileObject('log/log.txt', 'w');
+    //$logSplFileObject->fwrite(date('H:i:s'). ' '.memory_get_usage().PHP_EOL);
+    //unset($logSplFileObject);
+    // 必要？
+    //unset($line);
+//}
